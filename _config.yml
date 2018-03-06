@@ -6,13 +6,13 @@
 title: 梅沙科技 FEX
 subtitle:
 description: 梅沙科技前端 blog
-author: meishafex
+author: meishafem
 language: zh-cn
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fex.meishakeji.com
+url: http://fem.meishakeji.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
