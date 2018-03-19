@@ -79,7 +79,6 @@ theme: yilia
 deploy:
   type: git
   repo: git@github.com:meishaFE/meishaFE.github.io.git
-  branch: gh-pages
 
 jsonContent:
   meta: false
