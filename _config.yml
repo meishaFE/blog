@@ -98,3 +98,14 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: true
