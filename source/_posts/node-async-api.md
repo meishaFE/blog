@@ -15,7 +15,7 @@ tags:
 ​	在进程启动时，Node会创建一个类似于while(true)的循环，一次循环的过程我们称为Tick。每个Tick的过程就是查看是否有事件待处理，如果有，就取出事件及其相关的回调函数。如果存在关联的回调函数，就执行它们。然后进入下个循环，如果不再有事件处理，就退出进程。
 <!-- more -->
 
-<img src="https://cdn.meishakeji.com/fontend-blog/img/node-asyc-api@01.jpg" width="300"/>
+<img src="https://cdn.meishakeji.com/frontend-blog/img/node-asyc-api@01.jpg" width="300"/>
 
 #### Event Loop的各个阶段
 
