@@ -153,9 +153,40 @@ export default class MyComponent extends wepy.component {
 </template>
 ```
 
-4. 可以使用wxs替代vue中的filters
+4. wxs 目前主要是增强 wxml 标签的表达能力，可以使用wxs替代vue中的filters
     - wxs必须是外链文件。并且后缀为.wxs。
     - wxs引入后只能在template中使用，不能在script中使用
+
+utils.wpy：
+```javascript
+module.exports = {
+  transformSex: function(id) {
+    return +id === 1 ? '男' : '女';
+  }
+};
+```
+
+在组件中使用utils.wpy：
+```html
+<view>
+  <text>{{utils.transformSex(sex)}}</text>
+  <!--男-->
+</view>
+```
+```javascript
+import wepy from 'wepy';
+import utils from '@/wxs/utils.wxs';
+
+export default class Text extends wepy.component {
+  data = {
+    sex: 1
+  };
+
+  wxs = {
+    utils: utils
+  };
+}
+```
 
 ## 常用的小程序组件的一些tip
 
