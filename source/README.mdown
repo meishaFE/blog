@@ -1,2 +1,2 @@
 # 梅沙科技的前端 blog
-[meishafem](http://fex.meishakeji.com/)
+[meishafex](http://fex.meishakeji.com/)
