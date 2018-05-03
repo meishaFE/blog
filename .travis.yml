@@ -18,7 +18,6 @@ cache:
 
 install:
   - yarn
-  - yarn add -S hexo-generator-json-content
 
 script:
   - hexo cl
