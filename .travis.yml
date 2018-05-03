@@ -6,8 +6,19 @@ before_install:
 - git config user.email "jxdjayden@gmail.com"
 - npm install -g hexo-cli
 
+notifications:
+  email:
+    - jayden@meishakeji.com
+    - lemon@meishakeji.com
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 install:
-  - npm install
+  - yarn
+  - yarn add -S hexo-generator-json-content
 
 script:
   - hexo cl
