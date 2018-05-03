@@ -1,0 +1,28 @@
+language: node_js
+
+node_js: stable
+before_install:
+- git config user.name "JxJayden"
+- git config user.email "jxdjayden@gmail.com"
+- npm install -g hexo-cli
+
+install:
+  - npm install
+
+script:
+  - hexo cl
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git add .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: github.com/meishaFE/meishaFE.github.io.git
