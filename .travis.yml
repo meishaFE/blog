@@ -8,8 +8,7 @@ before_install:
 
 notifications:
   email:
-    - jayden@meishakeji.com
-    - lemon@meishakeji.com
+    - g_dev_frontend@meishakeji.com
 
 cache:
   yarn: true
