@@ -8,7 +8,10 @@ before_install:
 
 notifications:
   email:
-    - g_dev_frontend@meishakeji.com
+    recipients:
+      - g_dev_frontend@meishakeji.com
+    on_success: always
+    on_failure: always
 
 cache:
   yarn: true
