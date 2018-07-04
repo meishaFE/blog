@@ -9,17 +9,17 @@ tags:
 
 ## 前言
 
-最近想了解一下小程序的开发，刚好看到京东的o2team开源了一套遵循React语法规范的框架，因为之前对React比较熟悉，所以赶快上手体验了一下。
+最近想了解一下小程序的开发，刚好看到京东的 o2team 开源了一套遵循 React 语法规范的框架，因为之前对 React 比较熟悉，所以赶快上手体验了一下。
 
-## Taro简介
+## Taro 简介
 
 👽 Taro，泰罗·奥特曼，宇宙警备队总教官，实力最强的奥特曼。
 
-Taro的语法规则基于React规范，有着与React一致的组件化思想，生命周期也和React生命周期一致不需要学习小程序的那一套生命周期，而且支持使用JSX语法！这点就是选择Taro很重要的理由了，我觉得JSX语法更加语义化且写起来可以让代码更加简洁干净。总之就是只写一份React语法的代码，可以用Taro转换成多个端运行的代码（小程序、H5、ReactNative，快应用）🤩。
+Taro 的语法规则基于 React 规范，有着与 React 一致的组件化思想，生命周期也和 React 生命周期一致不需要学习小程序的那一套生命周期，而且支持使用 JSX 语法！这点就是选择 Taro 很重要的理由了，我觉得JSX语法更加语义化且写起来可以让代码更加简洁干净。总之就是只写一份 React 语法的代码，可以用 Taro 转换成多个端运行的代码（小程序、H5、ReactNative，快应用）🤩。
 
-## Taro的使用
+## Taro 的使用
 
-安装Taro就多不赘述，可以去 [github地址](https://github.com/NervJS/taro)查看，推荐安装用cnmp，之前用yarn和npm都报了错。
+安装 Taro 就多不赘述，可以去 [github地址](https://github.com/NervJS/taro) 查看，推荐安装用 cnmp ，之前用 yarn 和 npm 都报了错。
 
 安装后文件目录如下：
 
@@ -64,7 +64,7 @@ Taro的语法规则基于React规范，有着与React一致的组件化思想，
 └── package.json
 ```
 
-app.js入口文件示例如下：
+app.js 入口文件示例如下：
 
 ```javascript
 import Taro, { Component } from '@tarojs/taro'
@@ -133,13 +133,13 @@ class App extends Component {
 Taro.render(<App />, document.getElementById('app'))
 ```
 
-可以看出入口文件也是React风格的写法，首先要引用依赖 @tarojs/taro，在这里我们继承了Component类。
+可以看出入口文件也是 React 风格的写法，首先要引用依赖 @tarojs/taro，在这里我们继承了 Component 类。
 
-通常入口文件会包含一个config 配置项，这里的配置主要参考微信小程序的[全局配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html)而来，在编译成小程序时，这部分配置将会被抽离成app.json，如果编译成其他端（H5），也会有其他用途（待深入了解）。
+通常入口文件会包含一个 config 配置项，这里的配置主要参考微信小程序的[全局配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html)而来，在编译成小程序时，这部分配置将会被抽离成 app.json，如果编译成其他端(H5)，也会有其他用途（待深入了解）。
 
-创建Taro项目时会提示选择sass还是less，这里我们选择了sass，在app.scss定义全局的样式，其定义的样式会作用于每个页面，当然页面本身的局部样式也可以覆盖全局样式。
+创建 Taro 项目时会提示选择 sass 还是 less，这里我们选择了 sass，在 app.scss 定义全局的样式，其定义的样式会作用于每个页面，当然页面本身的局部样式也可以覆盖全局样式。
 
-接下来我们尝试写一个小程序DEMO主页：
+接下来我们尝试写一个小程序 DEMO 主页：
 
 ``` js
 import Taro, { Component } from '@tarojs/taro'
@@ -236,9 +236,9 @@ export default class Index extends Component {
 
 ![bake](http://ovwvaynot.bkt.clouddn.com/bake.gif)
 
-Taro的数据请求api使用了Taro.request， 跟wx.request 使用方法基本一致，不同的是 Taro.request 天然支持 promise 化，点击跳转使用Taro.navigateTo，跟wx.navigateTo使用方法基本一致。
+Taro 的数据请求 api 使用了 Taro.request， 跟 wx.request 使用方法基本一致，不同的是 Taro.request 天然支持 promise 化，点击跳转使用 Taro.navigateTo，跟 wx.navigateTo 使用方法基本一致。
 
-Taro引用本地静态资源需要先import进来再使用，为了让h5部署的时候图片路径不出错，最好把图片放到七牛上，然后写路径。
+Taro 引用本地静态资源需要先 import 进来再使用，为了让 h5 部署的时候图片路径不出错，最好把图片放到七牛上，然后写路径。
 
 ```js
 // Taro 引用本地静态资源
@@ -251,11 +251,11 @@ import icon from '../../images/icon.png'
 
 ## 总结
 
-原生开发和taro开发小程序，taro可以增加代码复用性，很适合需要web端、小程序端等多端支持的项目，尤其是已有react实现的web产品，需要快速开发一个小程序版本的需求场景，并且该团队更熟悉的是react。
+原生开发和 Taro 开发小程序，Taro 可以增加代码复用性，很适合需要 web 端、小程序端等多端支持的项目，尤其是已有 react 实现的 web 产品，需要快速开发一个小程序版本的需求场景，并且该团队更熟悉的是 react。
 
-taro最主要的功能是web端与小程序一致的开发体验，以及尽可能的实现了ui复用，比如一些toast、showLoading等。
+Taro 最主要的功能是 web 端与小程序一致的开发体验，以及尽可能的实现了 UI 复用，比如一些 toast、showLoading 等。
 
-总的来说，taro作为一个新的形态，从开发角度来看，它可以算是多端的一个结合，开发一套代码既能生成快应用，也能生成其他端，节约开发成本、开发时间等。taro支持组件化开发、npm包支持，css预编译器支持等等，最重要是可以用jsx来写微信小程序，react粉可以快速上手了。再细节的许多点还需要深入体验一下，希望大家也能多多尝试。
+总的来说，Taro 作为一个新的形态，从开发角度来看，它可以算是多端的一个结合，开发一套代码既能生成快应用，也能生成其他端，节约开发成本、开发时间等。Taro 支持组件化开发、npm 包支持，css 预编译器支持等等，最重要是可以用 JSX 来写微信小程序，react 粉可以快速上手了。再细节的许多点还需要深入体验一下，希望大家也能多多尝试。
 
  
 
