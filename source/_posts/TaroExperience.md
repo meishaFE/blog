@@ -234,7 +234,7 @@ export default class Index extends Component {
 
 效果图：
 
-![bake](/Users/aking/Desktop/bake.gif)
+![bake](http://ovwvaynot.bkt.clouddn.com/bake.gif)
 
 Taro的数据请求api使用了Taro.request， 跟wx.request 使用方法基本一致，不同的是 Taro.request 天然支持 promise 化，点击跳转使用Taro.navigateTo，跟wx.navigateTo使用方法基本一致。
 
