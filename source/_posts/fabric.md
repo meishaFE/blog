@@ -1,6 +1,13 @@
-## Farbricjs学习笔记
+---
+title: Fabricjs学习笔记
+date: 2018-10-11 09:22:15
+tags:
+- canvas
+---
 
- 	此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Farbricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
+## Fabricjs学习笔记
+
+ 	此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Fabricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
 
 ```javascript
 // 画矩形
@@ -62,7 +69,7 @@ canvas.add(image)
 
 如果想要监听并操作这些图形，用Fabric自带的监听事件即可：
 
-```JS
+```js
 // 鼠标按下
 this.canvas.on('mouse:down',(event)=>{
 //如果点击到了canvas上面的图形，则event.target为这个图形对象，可以任意做属性的修改，另外可以用event.pointer.x和event.pointer.y来取到鼠标当前坐标用来做边界判断或是其他操作。
@@ -143,4 +150,5 @@ object.hoverCursor = 'help';
 this.canvas.defaultCursor = `url('/game/static/stage/${this.cursorToolImgs[idx]}') 10 20, auto`
 // 第一个参数是设置鼠标为一个图片，第二三个是鼠标点击位置，第四个是如果第一个参数无效的话可以有个备选的样式，一般用auto
 ```
+
 持续更新。。。
