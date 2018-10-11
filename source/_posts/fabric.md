@@ -7,7 +7,9 @@ tags:
 
 ## Fabricjs学习笔记
 
- 	此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Fabricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
+ 	
+
+​	此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Fabricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
 
 ```javascript
 // 画矩形
@@ -96,7 +98,7 @@ this.canvas.on('object:added', (event)=>{
 
 ​	选中物体后Fabricjs自带了一个控制框，如下图：
 
-![image-20181010171117028](/var/folders/8c/8_3m9d954_b7644sj2t6xbrh0000gn/T/abnerworks.Typora/image-20181010171117028.png)
+![bake](http://ovwvaynot.bkt.clouddn.com/image-20181010171117028.png)
 
 
 
@@ -120,7 +122,7 @@ object.evented = false，让对象不作为事件源。
 
 fabricjs的层级问题 ：做需求的时候发现点击两点后没正确连到想要的位置，图为想要的效果：
 
-![image-20181010175807861](/var/folders/8c/8_3m9d954_b7644sj2t6xbrh0000gn/T/abnerworks.Typora/image-20181010175807861.png)
+![image-20181010175807861](http://ovwvaynot.bkt.clouddn.com/image-20181010175807861.png)
 
 
 
