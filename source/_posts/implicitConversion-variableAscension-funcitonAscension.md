@@ -21,6 +21,8 @@ console.log(1 + undefined); // NaN
 ```
 '+'号运算符的方向从左到右，当使用'+'号运算符时，只有Boolean类型和Null类型转换为了Number类型，其他的都转换为String类型;undefined 转化为Number 为'NaN'。
 
+<!-- more -->
+
 再来试试String类型
 
 ```javascript
