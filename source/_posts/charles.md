@@ -9,6 +9,8 @@ tags:
 
 工欲善其事必先利其器,作为一个前端工作者，抓包，代理，这些日常的操作应该是耳熟能详的；但是，如何能够便捷的达到目的呢，今天，就给大家介绍一下Charles这一前端利器。
 
+<!-- more -->
+
 ### 下载安装
 
 [安装包下载地址v4.2.1](http://cdn.meishakeji.com/static/charles/charles4.2.1.dmg)
