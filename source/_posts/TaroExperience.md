@@ -17,6 +17,8 @@ tags:
 
 Taro 的语法规则基于 React 规范，有着与 React 一致的组件化思想，生命周期也和 React 生命周期一致不需要学习小程序的那一套生命周期，而且支持使用 JSX 语法！这点就是选择 Taro 很重要的理由了，我觉得JSX语法更加语义化且写起来可以让代码更加简洁干净。总之就是只写一份 React 语法的代码，可以用 Taro 转换成多个端运行的代码（小程序、H5、ReactNative，快应用）🤩。
 
+<!-- more -->
+
 ## Taro 的使用
 
 安装 Taro 就多不赘述，可以去 [github地址](https://github.com/NervJS/taro) 查看，推荐安装用 cnmp ，之前用 yarn 和 npm 都报了错。
