@@ -1,12 +1,14 @@
 ---
 title: How  browsers work
 date: 2018-11-22 20:00:00
-tags: 
+tags:
 - browsers
 ---
 
 本文主要内容是加上自己理解翻译的how browsers work这篇文章（http://taligarsiel.com/Projects/howbrowserswork1.htm）
 以及B站的一个视频（https://www.bilibili.com/video/av35265997/）
+
+<!-- more -->
 
 ### 一：浏览器的主要功能
 
@@ -23,13 +25,13 @@ tags:
 
 值得注意的是：Chrome和大多数浏览器不同的是，它拥有多个独立的渲染引擎实例，每新开一个tab页面就会新增一个，即每个tab都是一个独立的进程。
 
-![浏览器的主要组件](https://img-blog.csdnimg.cn/20181106111224438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VjaG82MDE=,size_16,color_FFFFFF,t_70)
+![浏览器的主要组件](http://cdn.meishakeji.com/frontend-blog/img/work1.png)
 
 ### 三：渲染引擎
 渲染引擎的作用即是：在浏览器窗口中显示用户所请求的内容
 渲染引擎可以可以显示HTML / XML文档和图像或PDF，这里主要讨论的是css / html / 图像
 渲染的基本流程：
-![渲染的基本流程](https://img-blog.csdnimg.cn/20181106154226601.png)
+![渲染的基本流程](http://cdn.meishakeji.com/frontend-blog/img/work2.png)
 渲染引擎首先将HTML文档并将标记转换为名为"content tree"的树的DOM节点。
 它将解析外部CSS文件和样式元素。
 样式信息与HTML中的可视化指令一起用于创建另一个tree - 渲染树（rendering tree）。
