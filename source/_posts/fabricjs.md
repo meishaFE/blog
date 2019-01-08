@@ -281,5 +281,3 @@ let activeObject = state.canvas.getActiveObject();
         state.canvas.remove(state.clipActiveObj);
 ```
 裁剪功能大概就完成了, demo在网上找了类似的: http://jsfiddle.net/hellomaya/kNEaX/1/
-
-未完待续..
