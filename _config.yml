@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 梅沙科技 FEM
+title: 梅沙科技 FEX
 subtitle:
 description: 梅沙科技前端 blog
-author: meishafem
+author: meishafex
 language: zh-cn
 timezone:
 
@@ -98,3 +98,14 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: true

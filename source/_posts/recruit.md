@@ -28,4 +28,4 @@ tags: 招聘
 ## 联系我们
 [公司官网](https://www.meishakeji.com/)
 
-邮箱地址：hr@meishakeji.com
+邮箱地址：hr@meishakeji.com(发送简历请标明来自博客)

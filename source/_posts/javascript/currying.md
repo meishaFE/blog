@@ -75,7 +75,7 @@ console.log(accPartial(2,3)); // 24
 通过以上代码我们可以看到，我们新增了一个偏函数partial来接收fn函数作为一个形参和一个presetArgs数组来收集传入的实参，保存起来供之后来调用；然后，return出了一个partiallyApplied函数，此函数中拥有一个laterArgs数组参数来接受所有的实参。
 
 
-## 柯里化的实现(来做lodash)
+## 柯里化的实现(来自lodash)
 
 ```javascript
 function curry(fn) {

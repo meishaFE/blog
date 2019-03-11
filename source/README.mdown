@@ -1,2 +1,5 @@
 # 梅沙科技的前端 blog
-[meishafem](http://fex.meishakeji.com/)
+
+[![Build Status](https://travis-ci.org/meishaFE/blog.svg?branch=master)](http://fex.meishakeji.com/)
+
+[meishafex](http://fex.meishakeji.com/)
