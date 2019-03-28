@@ -14,7 +14,9 @@ tags:
 
 另外，这个工具更新下载完成后，只需要重启应用就能完成更新（体验参考 vscode）
 
-## mac 安装包代码签名
+<!-- more -->
+
+## 2 mac 安装包代码签名
 
 1. 安装 Xcode
 2. 打开菜单栏 Xcode -> Preferences -> Accounts -> 登录开发者账号 -> Manage certificates
@@ -25,7 +27,7 @@ tags:
 7. 加上密钥文件的路径 `export CSC_LINK=密钥文件的路径`
 8. 配置完成
 
-## 2 打包配置
+## 3 打包配置
 
 electron 打包的配置在`package.json`中
 
@@ -88,7 +90,7 @@ electron 打包的配置在`package.json`中
 - windows 下不需要代码签名，但是因为配置了代码签名，打包 windows 的安装包时会将 mac 的代码签名打包进去，这时 windows 下自动更新会出问题。将`verifyUpdateCodeSignature`配置为`false`，windows 将不签名
 - windows 需要准备不同规格的图标文件（特别注意：一个 ico 文件可以包含多个尺寸的图标）
 
-## 主进程配置
+## 4 主进程配置
 
 直接上代码+注释，下面是自动更新的一些**主要**的配置（不要直接复制哦）
 
@@ -181,7 +183,7 @@ function updateHandle(mainWindow) {
 }
 ```
 
-## view 层配置
+## 5 view 层配置
 
 自动更新的交互逻辑和界面是需要自己写的，你可以在某个页面中监听到上面代码中主进程发送的事件。下面要做的事情就很明了了，直接上代码。
 
@@ -228,6 +230,6 @@ ipcRenderer.on('onError', (event, err) => {
 });
 ```
 
-## 更新
+## 6 更新
 
 当有新版本要发布时，注意需要更改 package.json 中的版本号
