@@ -25,65 +25,59 @@ tags:
 - 获取所有计算结果，匹配到等于24的数据，拉取出运算表达式
 
 ```javascript
-  function numWarp(...num) {
-            return num.map((a) => ({
-                m: a+'',
-                r: a
-            }));
-        }
-        function calm(a,b) {
-            var r = [
-                {
-                    m: `(${a.m}+${b.m})`,
-                    r: a.r+b.r
-                },
-                {
-                    m: `(${a.m}-${b.m})`,
-                    r: a.r-b.r
-                },
-                {
-                    m: `(${b.m}-${a.m})`,
-                    r: b.r-a.r
-                },
-                {
-                    m: `(${a.m}*${b.m})`,
-                    r: a.r*b.r
-                },
-            ];
-            a.r !== 0 && r.push({
-                m: `(${b.m}/${a.m})`,
-                r: b.r/a.r
-            });
-            b.r !==0 && r.push({
-                m: `(${a.m}/${b.m})`,
-                r: a.r/b.r
-            });
-            return r;
-        }
-        function allCalm(a,b,c,d,u) {
-            var s = [], t = [];
-            calm(a,b).forEach((i) => {
-                s = s.concat(calm(i, c));
-                t = t.concat(calm(i, d));
-            });
-            s.forEach((i) => {
-                u = u.concat(calm(i, d));
-            });
-            t.forEach((i) => {
-                u = u.concat(calm(i, c));
-            });
-            return u;
-        }
-        function get24(a,b,c,d) {
-            [a,b,c,d]= dataWarp(a,b,c,d);
-            allCalm(c,d,b,a,allCalm(b,d,a,c,allCalm(b,c,a,d,allCalm(a,d,b,c,allCalm(a,c,b,d,allCalm(a,b,c,d,[])))))).forEach((i) => {
-                if (i.r === 24) {
-                    console.log(i.m);
-                } else {
-                  console.log('妹有算式组合能等于24')
-                }
-            });
-        }
+    function numWarp(...num) {
+        return num.map((a) => ({
+            m: a+'',
+            r: a
+        }));
+    }
+    function calm(a,b) {
+        var r = [
+            {
+                m: `(${a.m}+${b.m})`,
+                r: a.r+b.r
+            },
+            {
+                m: `(${a.m}-${b.m})`,
+                r: a.r-b.r
+            },
+            {
+                m: `(${b.m}-${a.m})`,
+                r: b.r-a.r
+            },
+            {
+                m: `(${a.m}*${b.m})`,
+                r: a.r*b.r
+            },
+        ];
+        a.r !== 0 && r.push({m: `(${b.m}/${a.m})`,r: b.r/a.r});
+        b.r !==0 && r.push({m: `(${a.m}/${b.m})`,r: a.r/b.r});
+        return r;
+    }
+    function allCalm(a,b,c,d,u) {
+        var s = [], t = [];
+        calm(a,b).forEach((i) => {
+            s = s.concat(calm(i, c));
+            t = t.concat(calm(i, d));
+        });
+        s.forEach((i) => {
+            u = u.concat(calm(i, d));
+        });
+        t.forEach((i) => {
+            u = u.concat(calm(i, c));
+        });
+        return u;
+    }
+    function get24(a,b,c,d) {
+        [a,b,c,d]= dataWarp(a,b,c,d);
+        allCalm(c,d,b,a,allCalm(b,d,a,c,allCalm(b,c,a,d,allCalm(a,d,b,c,allCalm(a,c,b,d,allCalm(a,b,c,d,[])))))).forEach((i) => {
+            if (i.r === 24) {
+                console.log(i.m);
+            } else {
+                console.log('没有算式组合能等于24')
+            }
+        });
+    }
 ```
 然后我们就可以做到随便给出4个数字就能算出是否有等于24的算式，也就可以反推到生成的数字可以组合成24点啦， 这样类似的实现方法有很多，比如采取暴力破解：穷举法，又或者是用javascript里面的eval函数也可以计算出表达式然后搞定它~
 
