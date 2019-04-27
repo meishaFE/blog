@@ -1,10 +1,14 @@
 ---
 title: Farbricjs学习笔记
-date: 2018-12-16
-tags: canvas
+date: 2018-12-16 23:00:00
+tags: 
+- canvas
 - js
 ---
- 	此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Farbricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
+
+## 前言
+
+此次的项目是一个物理类游戏，同时涉及到的交互也比较多，原生的canvas画布可能满足不了项目的需求，因为原生canvas不提供点击画布内元素产生各类交互的功能，故去寻找了一个符合项目需求的canvas库--Farbricjs，这个库是在canvas上面封装了一层自己的逻辑，为canvas元素提供了交互式对象，使用Fabricjs可以把自己画的每一个道具或者图形当成一个对象，然后通过去修改对象属性去实现移动旋转或是变形。下面是项目时常用到的代码段：
 <!-- more -->
 ```javascript
 // 画矩形
@@ -277,5 +281,3 @@ let activeObject = state.canvas.getActiveObject();
         state.canvas.remove(state.clipActiveObj);
 ```
 裁剪功能大概就完成了, demo在网上找了类似的: http://jsfiddle.net/hellomaya/kNEaX/1/
-
-未完待续..
