@@ -187,7 +187,7 @@ tags: 设计模式
     ```js
     class Circle {
       draw () {
-        console.log('画一个圆形);
+        console.log('画一个圆形');
       }
     }
 
