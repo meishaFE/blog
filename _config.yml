@@ -109,3 +109,13 @@ marked:
   smartypants: true
   modifyAnchors: ''
   autolink: true
+
+server:
+  port: 5000
+  log: false
+  ip: 127.0.0.1
+  compress: true
+  header: true
+  serveStatic:
+    extensions:
+    - html
