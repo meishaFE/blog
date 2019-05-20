@@ -9,10 +9,10 @@ tags:
 ## 前言
 最近在学习一个基于nodejs的一个爬虫项目，`NEOCrawer`。
 git地址：https://gitee.com/dreamidea/neocrawler
+<!-- more -->
 
 <img src="http://git.oschina.net/uploads/images/2014/0912/203424_dbbb3d02_13016.png"/>
 
-<!-- more -->
 
 上图是整个爬虫项目的架构图。
 
