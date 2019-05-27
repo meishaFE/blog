@@ -45,6 +45,7 @@ tags:
 import aCompontent from './components/A.vue';
 export default {
     name: 'app',
+    compontent: { aCompontent },
     data () {
         return {
             dataA: 'dataA数据'
@@ -108,6 +109,9 @@ export default {
 
 举个 🌰：
 假设现在有 4 个组件，Home.vue 和 A/B/C 组件，AB 这三个组件是兄弟组件，Home.vue 相当于父组件
+建立一个空的 Vue 实例,将通信事件挂载在该实例上 - D.js
+import Vue from 'vue'
+export default new Vue()
 
 ```js
 // 我们可以在router-view中监听change事件，也可以在mounted方法中监听
@@ -126,16 +130,22 @@ export default {
 <template>
   <p @click="dataA">将A组件的数据发送给C组件 - {{name}}</p>
 </template>
-data() {
-  return {
-    name: 'Echo'
-  }
-},
-methods: {
-  send() {
-    this.$emit('data-a', this.name);
+<script>
+import Event from "./D";
+export default {
+  data() {
+    return {
+      name: 'Echo'
+    }
+  },
+  components: { Event },
+  methods: {
+    dataA() {
+      Event.$emit('data-a', this.name);
+    }
   }
 }
+</script>
 ```
 
 ```js
@@ -143,16 +153,22 @@ methods: {
 <template>
   <p @click="dataB">将B组件的数据发送给C组件 - {{age}}</p>
 </template>
-data() {
-  return {
-    age: '18'
-  }
-},
-methods: {
-  send() {
-    this.$emit('data-b', this.age);
+<script>
+import Event from "./D";
+export default {
+  data() {
+    return {
+      age: '18'
+    }
+  },
+  components: { Event },
+  methods: {
+    dataB() {
+      Event.$emit('data-b', this.age);
+    }
   }
 }
+</script>
 ```
 
 ```js
@@ -160,21 +176,29 @@ methods: {
 <template>
   <p>C组件得到的数据 {{name}} {{age}}</p>
 </template>
-data() {
-  return {
-    name: '',
-    age: ''
+<script>
+import Event from "./D";
+export default {
+  data() {
+    return {
+      name: '',
+      age: ''
+    }
+  },
+  components: { Event },
+  mounted() {
+    // 在模板编译完成后执行
+    Event.$on('data-a', name => {
+      this.name = name;
+    })
+    Event.$on('data-b', age => {
+      this.age = age;
+    })
   }
-},
-mounted() {
-  // 在模板编译完成后执行
-  this.$on('data-a',name => {
-    this.name = name;
-  })
-  this.$on('data-b',age => {
-    this.age = age;
-  })
 }
+</script>
+
+
 ```
 
 上面的 🌰 里我们可以知道，在 C 组件的 mounted 事件中监听了 A/B 的 \$emit 事件，并获取了它传递过来的参数（由于不确定事件什么时候触发，所以一般在 mounted / created 中监听）
@@ -419,14 +443,16 @@ export default {
 ```js
 // 父组件
 <template>
-  <child1 ref="child1"></child1>
+  <child1 @click="sayHi" ref="child1"></child1>
 </template>
 <script>
   export default {
-    mounted () {
-      const child1 = this.$refs.child1;
-      console.log(child1.title);  // Vue.js
-      child1.sayHello();  // 弹窗
+    methods: {
+      sayHi () {
+        const child1 = this.$refs.child1;
+        console.log(child1.title);  // Vue.js
+        child1.sayHello();  // 弹窗
+      }
     }
   }
 </script>
