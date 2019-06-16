@@ -9,7 +9,7 @@ tags:
 
 最近做海底冒险游戏时遇到了一个小需求，就是一个海底背景的动画效果要随着用户点击加速减速按钮的交互去实时滚动背景:
 <!-- more -->
-![avatar](../images/miner.gif)
+![image](https://upload.ouliu.net/i/201906161719363telg.gif)
 
 这里首先想到的是用keyframes去实现，因为可以实时获取到图片当前的位置，所以就通过改变keyframes中关键帧的top值来实现下降和上升的效果：
 ```javascript
