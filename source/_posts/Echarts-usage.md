@@ -1,11 +1,12 @@
-
 ---
 title: 实用的 Echarts 开发技巧
 date: 2019-07-18 14:00:00
+author: Nathan
 tags:
-- Echarts
-- JavaScript
+  - Echarts
+  - JavaScript
 ---
+
 
 ## 实用的 Echarts 开发技巧
 
