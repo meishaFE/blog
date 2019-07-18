@@ -19,33 +19,33 @@ tags:
 
 #### 1. 如何处理坐标轴文字在画布边上溢出的问题?
 <hr>
-![image](../images/echarts/e-chart1.png){:height="260px" width="360px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/2kUZ8KC857ORHvarTiHA.UZFafmcHuTOTc*xewZoOpM!/b/dMUAAAAAAAAA&bo=8AU4BAAAAAADB.s!&rf=viewer_4){:height="260px" width="360px"}
 <br>
 刚遇到这个问题的时候第一反应是去文档里查找和坐标轴文字相关的配置，可是最后无功而返。想换种方式——文字换行，但即使换行也有可能出现溢出的问题，我们需要的是修改它的渲染方式。最后误打误撞看到了 grid 这个配置的 containLabel 属性。我们只需要设置这个属性为true，就可以完美避免文字溢出的问题。这里贴一下这个属性的配置说明：
 <br>
-![image](../images/echarts/echart-grid.png){:height="260px" width="840px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/16pt1B1DH9m7gWdpMW03WmLCz.ZvA1M3UGWyXJ6EC30!/b/dAgBAAAAAAAA&bo=6AdmAgAAAAADB6k!&rf=viewer_4){:height="260px" width="840px"}
 <br>
 效果图：
 <br>
-![image](../images/echarts/e-chart1_1.png){:height="260px" width="360px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/cPzjDLjCgnUziwhIZFeZ8e35IxagMXnCZiJvb9O50A0!/b/dLYAAAAAAAAA&bo=dAUaBAAAAAADB00!&rf=viewer_4){:height="260px" width="360px"}
 <br>
 
 #### 2. 如何将饼图的组成说明直接显示在 label，如何修改柱状图的默认提示框 ，如何使坐标轴的文字换行?
 <hr>
 图一：<br>
-![image](../images/echarts/e-chart2.png){:height="260px" width="670px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/VTY.qei9n4ckOlk5*uCNRy4wSghRrcz7W.mX.0neKwY!/b/dMMAAAAAAAAA&bo=lgmoAwAAAAADBxY!&rf=viewer_4){:height="260px" width="670px"}
 <br>
 图二：<br>
-![image](../images/echarts/e-chart3.png){:height="260px" width="670px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/LjrHQaVOxRdieK6eKh1H202Cv0xV6wdlVp3LQR4OFHc!/b/dL8AAAAAAAAA&bo=lgmgAwAAAAADBx4!&rf=viewer_4){:height="260px" width="670px"}
 <br>
 图三：<br>
-![image](../images/echarts/e-chart4.png){:height="260px" width="670px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/q*uoP812ioxF1VVVaecjxEC2z3t7LnHIKMyPU2eqg20!/b/dAgBAAAAAAAA&bo=jgmQAwAAAAADBzY!&rf=viewer_4){:height="260px" width="670px"}
 <br>
 三个截图的左边的chart的配置均来自 Echarts 官方 demo（三个图的数据做了修改，图三的坐标轴文字做了修改），三图的左边是 Echarts 的默认展示：默认的提示框，默认的组成说明，默认的坐标轴。如何来修改这些默认行为来达到右边的效果，眼看是三个问题，其实都是同类问题。
 
 画布中的关于提示框或者显示的文字都可以通过 `formatter` 来修改默认的样式，针对不同场景，会有不同属性的 `formatter`，如图所示。
 <br>
-![image](../images/echarts/e-chart-formatter.png){:height="300px" width="240px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/DRknncpiqpBDtlmtpi2dZ4KFQy2tBB4H5Xm8CsCN4rg!/b/dLgAAAAAAAAA&bo=EAKAAgAAAAADB7I!&rf=viewer_4){:height="300px" width="240px"}
 <br>
 `formatter` 属性接受一个字符串或者回调函数。
 
@@ -64,7 +64,7 @@ tags:
 默认情况下，在鼠标悬浮在 chart 上的时候，显示饼图对应的组成部分的相关数据。如何将这些信息直接显示在 `label` 上呢？如图一右所示：
 这时需要我们修改 `label` 的配置，所以直接定位到饼图的 `label` 配置。 我们打印出 `formatter` 的回调函数的第一个参数，可以得到我们想要的信息。
 <br>
-![image](../images/echarts/e-chart-serie1.png){:height="300px" width="400px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/a3Q..MZPirCQou2yBiS.Hoo8S6xz3IM4xL7rhlmyAic!/b/dL4AAAAAAAAA&bo=hgNWAgAAAAADB*M!&rf=viewer_4){:height="300px" width="400px"}
 <br>
 在 formatter 的回调中返回我们想要显示的结果即可，代码地址：https://codepen.io/HongYU/pen/xooweN
 
@@ -76,7 +76,7 @@ tags:
 2. seriesName： 组成部分的名称
 3. value： 组成部分的值
 
-![image](../images/echarts/e-chart-serie2.png){:height="360px" width="400px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/DoeRwWcOaOXsgSeDNW**cxl0nO88IV9trhol18z3w2w!/b/dL4AAAAAAAAA&bo=AAR.AwAAAAADB1s!&rf=viewer_4){:height="360px" width="400px"}
 <br>
 通过遍历数组算出一条 bar 的总值，然后算出对应的百分比。最后做字符串的拼接。代码地址：https://codepen.io/HongYU/pen/Bggjod
 
@@ -96,7 +96,7 @@ tags:
 <hr>
 效果图如下：
 <br>
-![image](../images/echarts/e-chart6.png){:height="300px" width="400px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/5fvT9hr95Vwphzi9K5e*Q7v81UHvVdGc9pITcDK4g9s!/b/dFMBAAAAAAAA&bo=iAUWBAAAAAADB70!&rf=viewer_4){:height="300px" width="400px"}
 <br>
 Echarts 是可以通过配置来显示堆图中一条 bar 的每一节的数据（如下图），但是不能配置出在 bar 顶端显示整条 bar 的总数，那我们要怎么实现呢？
 堆图中一条 bar 的每个组成部分代表着一个 serie，且他们的 stack 属性值是相同的。每个 serie 的显示可以根据它的 formatter 来修改。
@@ -110,14 +110,14 @@ Echarts 是可以通过配置来显示堆图中一条 bar 的每一节的数据�
 3. 隐藏其他 serie 的 label 显示，将新加的 `serie` 的 label 显示出来。
 4. 这个 label 最初是0，因为我们给他传入的值是0，计算得到每条 bar 的总值，然后通过 `formatter` 将默认显示替换为这个总值。
 <br>
-![image](../images/echarts/e-chart-serie3.png){:height="320px" width="380px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/ecf5637SI7*YzOXAoBYsTYpvLAltZgWA8eZkG6YczM8!/b/dD4BAAAAAAAA&bo=0AEcAQAAAAADB.4!&rf=viewer_4){:height="320px" width="380px"}
 <br>
 
 代码地址：https://codepen.io/HongYU/pen/QXXjVq
 
 如果是分组柱状体图呢，如何在bar的顶端显示该条 bar 的数值？
 <br>
-![image](../images/echarts/e-chart7.png){:height="340px" width="480px"}
+![image](http://m.qpic.cn/psb?/V13jYI8j0MYvwr/b*XbaCFPoL66f0.c2mk9GJvM4wsxGuUdpTAt1.ePWzM!/b/dMMAAAAAAAAA&bo=eAU4BAAAAAADB2M!&rf=viewer_4){:height="340px" width="480px"}
 <br>
 
 思路：在柱状图中， 相同 `stack` 属性值的 serie 会被放置在同一条 bar 堆砌在一起，不同的 `stack` 属性值的 serie 会被分组放置。
