@@ -1,5 +1,5 @@
 ---
-title: CommonJs与ES6的模块化
+title: module.exports与export
 categories:
   - - 模块化
 tags:
@@ -141,3 +141,5 @@ setTimeout(() => {
   console.log(window.a); // 123
 })
 ```
+
+`最后，如有理解错误的地方和不足的地方，欢迎提出和指正。`
