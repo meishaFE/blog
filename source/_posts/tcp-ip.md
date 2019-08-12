@@ -24,7 +24,7 @@ tags:
 
 OSI 参考模型对通信中必要的功能做了很好的归纳，下图展示了 OSI 参考模型中各个分层的主要作用：
 
-<img src="https://lexiangla.com/assets/42c360c0bcd111e99e530a58ac130555" width="660px"></img>
+<!-- <img src="/images/" width="660px"></img> -->
 
 上图只对 OSI 各层进行功能上的大概阐述，我们从最顶层——应用层开始介绍。整个过程以公司 A 和公司 B 的一次商业报价单发送为例子进行讲解。
 
