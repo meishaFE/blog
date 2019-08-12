@@ -24,7 +24,7 @@ tags:
 
 OSI 参考模型对通信中必要的功能做了很好的归纳，下图展示了 OSI 参考模型中各个分层的主要作用：
 
-<!-- <img src="/images/" width="660px"></img> -->
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/osi.png" width="660px"></img>
 
 上图只对 OSI 各层进行功能上的大概阐述，我们从最顶层——应用层开始介绍。整个过程以公司 A 和公司 B 的一次商业报价单发送为例子进行讲解。
 
@@ -60,7 +60,7 @@ MAC子层处理CSMA/CD算法、数据出错校验、成帧等；LLC子层定义�
 
 **TCP/IP 五层协议和 OSI 的七层协议对应关系如下：**
 
-<img src="https://lexiangla.com/assets/428c6142bcd111e9a5430a58ac131042"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/osi_tcp.png"></img>
 
 
 
@@ -73,14 +73,14 @@ IP 地址（IPv4 地址），由 32 位正整数来表示，IP 地址由 `网络
 ## 1. IP 地址的分类
 
 IP 地址分为四个级别，A / B / C / D 4 个类，基本结构如下图所示：
-<img src="https://lexiangla.com/assets/427538d2bcd111e980c60a58ac1318a3"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/IP_address_type.png"></img>
 
 要注意的是：在分配 IP 地址时，要用比特位表示主机地址时，不可以全部为 0 或者全部为 1，因为全部为 0 只有在表示对应的网络地址或 IP 地址不可获知的情况下才使用，而全部为 1 的主机地址通常作为广播地址。
 
 ## 2. IPv4 结构
 
 IPv4 的数据包基本结构如下图所示：
-<img src="https://lexiangla.com/assets/427480b8bcd111e9990c0a58ac131042"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/IPv4_data.png"></img>
 
 可以看到 IPv4 数据包主要由两部分组成：`IP首部 / IP载荷`（即数据）。
 而在 IP 首部中，有很多的信息：
@@ -107,7 +107,7 @@ IPv4 的地址长度一般为 4 个 8 位字节，即 32bit，而 IPv6 的地址
 
 IPv6 数据首部格式如下图所示：
 
-<img src="https://lexiangla.com/assets/42868dd0bcd111e990ef0a58ac131042"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/IPv6_data.png"></img>
 
 1. **版本**：同 IPv4 的版本示意，这里的值为 6。
 2. **通信量类**：相当于 IPv4 的 Type Of Service 字段。
@@ -128,7 +128,7 @@ IPv6 数据首部格式如下图所示：
 IP 隧道中可以将哪些从网络 A 发过来的 IPv6 包统合为一个数据，再为之追加一个 IPv4 的首部以后转发给网络 C。
 本来紧跟 IP 网络首部的是 TCP 或 UDP 的首部，然而现在情况是 IP 首部的后面是 IPv6 首部。
 
-<img src="https://lexiangla.com/assets/426832eabcd111e9942e0a58ac130d38"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/IP_tunnel.png"></img>
 
 # 三. TCP/UDP
 在TCP/IP中能够实现传输层功能的协议中，最具代表性的协议是TCP/UDP。
@@ -143,7 +143,7 @@ TCP通过`校验和`、`序列号`、`确认应答`、`重发控制`、`连接�
 
 以下图表示TCP通过序列号与确认应答提高可靠性：
 
-<img src="https://lexiangla.com/assets/42a14562bcd111e9bc1f0a58ac13095b"></img>
+<img src="https://raw.githubusercontent.com/meishaFE/blog/master/source/images/TCP_data_translate.png"></img>
 
 **1. ACK** —— 在TCP中，当发送端的数据到达接收主机时，接收端主机会返回一个已收到消息的通知，这个消息叫ACK（Positive Acknowledgement），TCP通过ACK实现可靠的数据传输，当发送端将数据发出之后等待对端的确认应答，如果有确认应答，说明数据已经成功到达对端，反之则说明数据丢失的可能性很大。
 而如果在一定时间段内没有收到确认应答，发送端就可以认为数据以及丢失，并进行重发，这样的话即时发生了丢包，也仍然可以保证数据可以到达对端，实现数据的可靠传输。
