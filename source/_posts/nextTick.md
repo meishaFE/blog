@@ -10,6 +10,8 @@ tags:
 
 最近在看vue源码的时候，看到了nextTick的定义，通读了一番，正所谓最好的输入就是输出，于是写下这篇博客，同时也希望能够给到别人帮助。
 
+<!-- more -->
+
 话不多说，由于代码较少，直接上源码。  
 ```javascript
 import { noop } from 'shared/util'
@@ -22,75 +24,75 @@ const callbacks = []
 let pending = false
 
 function flushCallbacks () {
-	pending = false
-	const copies = callbacks.slice(0)
-	callbacks.length = 0
-	for (let i = 0; i < copies.length; i++) {
-		copies[i]()
-	}
+  pending = false
+  const copies = callbacks.slice(0)
+  callbacks.length = 0
+  for (let i = 0; i < copies.length; i++) {
+    copies[i]()
+  }
 }
 
 let timerFunc
 
 if (typeof Promise !== 'undefined' && isNative(Promise)) {
-	const p = Promise.resolve()
-	timerFunc = () => {
-		p.then(flushCallbacks)
-		if (isIOS) setTimeout(noop)
-	}
-	isUsingMicroTask = true
+  const p = Promise.resolve()
+  timerFunc = () => {
+    p.then(flushCallbacks)
+    if (isIOS) setTimeout(noop)
+  }
+  isUsingMicroTask = true
 } else if (!isIE && typeof MutationObserver !== 'undefined' && (
-	isNative(MutationObserver) ||
-	// PhantomJS and iOS 7.x
-	MutationObserver.toString() === '[object MutationObserverConstructor]'
+  isNative(MutationObserver) ||
+  // PhantomJS and iOS 7.x
+  MutationObserver.toString() === '[object MutationObserverConstructor]'
 )) {
-	// Use MutationObserver where native Promise is not available,
-	// e.g. PhantomJS, iOS7, Android 4.4
-	// (#6466 MutationObserver is unreliable in IE11)
-	let counter = 1
-	const observer = new MutationObserver(flushCallbacks)
-	const textNode = document.createTextNode(String(counter))
-	observer.observe(textNode, {
-		characterData: true
-	})
-	timerFunc = () => {
-		counter = (counter + 1) % 2
-		textNode.data = String(counter)
-	}
-	isUsingMicroTask = true
+  // Use MutationObserver where native Promise is not available,
+  // e.g. PhantomJS, iOS7, Android 4.4
+  // (#6466 MutationObserver is unreliable in IE11)
+  let counter = 1
+  const observer = new MutationObserver(flushCallbacks)
+  const textNode = document.createTextNode(String(counter))
+  observer.observe(textNode, {
+    characterData: true
+  })
+  timerFunc = () => {
+    counter = (counter + 1) % 2
+    textNode.data = String(counter)
+  }
+  isUsingMicroTask = true
 } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
-	timerFunc = () => {
-		setImmediate(flushCallbacks)
-	}
+  timerFunc = () => {
+    setImmediate(flushCallbacks)
+  }
 } else {
-	timerFunc = () => {
-		setTimeout(flushCallbacks, 0)
-	}
+  timerFunc = () => {
+    setTimeout(flushCallbacks, 0)
+  }
 }
 
 export function nextTick (cb?: Function, ctx?: Object) {
-	let _resolve
-	callbacks.push(() => {
-		if (cb) {
-			try {
-				cb.call(ctx)
-			} catch (e) {
-				handleError(e, ctx, 'nextTick')
-			}
-		} else if (_resolve) {
-			_resolve(ctx)
-		}
-	})
-	if (!pending) {
-		pending = true
-		timerFunc()
-	}
+  let _resolve
+  callbacks.push(() => {
+    if (cb) {
+      try {
+        cb.call(ctx)
+      } catch (e) {
+        handleError(e, ctx, 'nextTick')
+      }
+    } else if (_resolve) {
+      _resolve(ctx)
+    }
+  })
+  if (!pending) {
+    pending = true
+    timerFunc()
+  }
 
-	if (!cb && typeof Promise !== 'undefined') {
-		return new Promise(resolve => {
-			_resolve = resolve
-		})
-	}
+  if (!cb && typeof Promise !== 'undefined') {
+    return new Promise(resolve => {
+      _resolve = resolve
+    })
+  }
 }
 ```
 
@@ -129,12 +131,12 @@ pending`三个变量，都是全局变量（当前函数执行环境）。
 `flushCallbacks`的作用是清空任务队列。代码比较简单。我们从里面摘出来看看。
 ```javascript
 function flushCallbacks () {
-	pending = false
-	const copies = callbacks.slice(0)
-	callbacks.length = 0
-	for (let i = 0; i < copies.length; i++) {
-		copies[i]()
-	}
+  pending = false
+  const copies = callbacks.slice(0)
+  callbacks.length = 0
+  for (let i = 0; i < copies.length; i++) {
+    copies[i]()
+  }
 }
 ```
 可以看到是将`pending`设置为false，意味着已执行完清空队列的操作， 不处于等待状态，可以执行下一次清空队列操作。同时需要注意的是这里采取的方式不是直接对数组进行遍历操作,而是先放到另外一个数组后再进行遍历操作。这样处理的原因我只能想到是因为在函数执行的期间可能报错，导致后面的代码不执行，从而无法清空掉任务队列。所以先采取清空队列，再由另一个复制队列去执行函数。  
@@ -239,7 +241,7 @@ export function nextTick (cb?: Function, ctx?: Object) {
 
 ```javascript
 Vue.prototype.$nextTick = function (fn: Function) {
-	return nextTick(fn, this)
+  return nextTick(fn, this)
 }
 ```
 可以看到只是默认帮我们把执行上下文绑定了。
