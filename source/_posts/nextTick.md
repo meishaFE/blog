@@ -10,6 +10,8 @@ tags:
 
 最近在看vue源码的时候，看到了nextTick的定义，通读了一番，正所谓最好的输入就是输出，于是写下这篇博客，同时也希望能够给到别人帮助。
 
+<!-- more -->
+
 话不多说，由于代码较少，直接上源码。  
 ```javascript
 import { noop } from 'shared/util'
