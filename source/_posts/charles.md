@@ -13,7 +13,7 @@ tags:
 
 ### 下载安装
 
-[安装包下载地址v4.2.1](http://cdn.meishakeji.com/static/charles/charles4.2.1.dmg)
+自行查找
 
 下载后进行安装即可
 
