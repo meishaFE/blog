@@ -11,6 +11,8 @@
 - `RTCPeerConnection`:通过`RTCPeerConnection`使得`WebRTC`能够构建点对点稳定、高效的流传输组件
 - `RTCDataChannel`：`RTCDataChannel`使得浏览器之间建立一个高吞吐量，低延时的信道，用于传输任意的数据
 
+<!-- more -->
+
 ##### 代码块实现：
 
 获取音视频本地流：
