@@ -12,7 +12,7 @@ tags:
 
 现在web端的视频播放器大多都是使用的`<video>` 标签，它的默认样式在不同浏览器是不同的。那些视频网站是如何改变 `<video>` 在浏览器中的默认行为， 使其在不同浏览器中表现一样的？ 
 <!-- more -->
-我制作了一个自定义播放器的样板，除了拥有播放进度，暂停/播放按钮，进入全屏/退出全屏等功能之外，还有倍速播放功能。接下来我就逐一讲解如何实现它的各个功能，也扩展一些在编写中遇到的问题。（样板使用了Vue，如果对其中的代码不清楚的地方，可以查看 Vue 官方文档[Vue官方文档](https://vuejs.org/v2/guide/)）
+我制作了一个自定义播放器的样板，除了拥有播放进度，暂停/播放按钮，进入全屏/退出全屏等功能之外，还有倍速播放功能。接下来我就逐一讲解如何实现它的各个功能，也扩展一些在编写中遇到的问题。（样板使用了Vue，如果对其中的代码不清楚的地方，可以查看 [Vue官方文档](https://vuejs.org/v2/guide/)）
 
 这是`<video>`标签在浏览器中的默认样式：
 <img src="https://thumbnail0.baidupcs.com/thumbnail/e3b8bd6f5u270ad7b52c602139c5178b?fid=2442092063-250528-1006563917287602&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VJFigzIOX2oNLtj7HMV1YooWwoQ%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;width: 576px; height:356px" alt="视频播放器默认样式">
@@ -64,7 +64,7 @@ data () {
   };
 }
 ```
-1. 播放、暂停视频
+**播放、暂停视频**
 
 ```
 this.$refs.videoRef.play();
@@ -72,9 +72,8 @@ this.$refs.videoRef.play();
 ```
 this.$refs.videoRef.pause();
 ```
-
-2. 获取视频总时长(`duration` 为只读属性)<br>
-  在元数据加载完成会触发 `loadedmetadata` 事件，这个时候我们就可以获取视频总时长
+**获取视频总时长**(`duration` 为只读属性),
+在元数据加载完成会触发 `loadedmetadata` 事件，这个时候我们就可以获取视频总时长
 
 ```
 setVideoDuration () {
@@ -86,7 +85,7 @@ setVideoDuration () {
 },
 ```
 
-3. 获取和设置视频当前播放进度(`currentTime` 为可读写属性)
+**获取和设置视频当前播放进度**(`currentTime` 为可读写属性)
 ```
 mediaTimeupdate () {
   if (this.$refs.videoRef) {
@@ -99,17 +98,17 @@ mediaTimeupdate () {
 this.$refs.videoRef.currentTime = newV
 ```
 
-4. 设置播放速率(`playbackRate` 为可读写属性)
+**设置播放速率**(`playbackRate` 为可读写属性)
 ```
 this.$refs.videoRef.playbackRate = playbackRate;   
 ```
 
-5. 设置音量(`volume` 为可读写属性)
+**设置音量**(`volume` 为可读写属性)
 ```
 this.$refs.videoRef.volume = volume;   
 ```
 
-6. 视频进入全屏，退出全屏。<br>
+**视频进入全屏，退出全屏**
   为了在不同的浏览器正确的调用 `requestFullscreen` 和 `exitFullscreen` 方法，需要使用兼容的写法。这两个方法都返回一个Promise实例，可以通过这个实例的 `then` 和 `catch` 方法来判断是否成功的进入全屏或者退出全屏了。
 ```
 function requestFullscreen (ele) {
@@ -158,11 +157,11 @@ function catchFullScreenError (promise) {
 ### 拓展
 除了上面谈到的功能，我们在实际需求开发中还有一些其他的要求，比如在视频网站需要对视频设置封面，在视频学习网站获取学员的学习时间来记录学习进度等等。
 
-1. 设置视频封面
+**设置视频封面**
    
 这个很简单，`source`标签的`poster`属性为一张图片地址即可。
 
-2. 获取视频播放时间
+**获取视频播放时间**
    
 如果你在看到这个需求的时候打算通过计时器来完成，那么在实现过程肯定是极其复杂的，而且还可能不精确。
 
@@ -198,7 +197,7 @@ function getPlayedDuration (bDetail = false) {
 }
 ```
 
-1. 视频自动播放
+**视频自动播放**
   如果你想视频加载完成后自动播放，需要在video标签添加autoplay属性。但是事实可能不会如你所愿，在Chrome中有个媒体的[自动播放策略](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio)，浏览器这篇文章需要科学上网，其中的策略内容如图所示：
 
   <img src="https://thumbnail0.baidupcs.com/thumbnail/9eea69f4csdfffd2b1f1399be0a30c7d?fid=2442092063-250528-254526268630587&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-6xKnFSfq54PwBp62o%2fkA0I0ZEtw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;" alt="auotoplayPolicy">
