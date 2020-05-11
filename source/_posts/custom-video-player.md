@@ -1,16 +1,13 @@
 ---
 title: 基于 Vue 的自定义视频播放器
 date: 2020-03-22 23:00:00
-tags: 
+tags:
 - video
 - vue
 ---
-
-# 基于 Vue 的自定义视频播放器
-
 平时我们在视频网站看剧看电影的时候，会注意到网站上的视频播放器有“倍速播放”，“音量控制”，“暂停/播放”，“进入全屏/退出全屏”等功能，而且在不同的网站上，播放器拥有的功能以及样式会各自不同。
 
-现在web端的视频播放器大多都是使用的`<video>` 标签，它的默认样式在不同浏览器是不同的。那些视频网站是如何改变 `<video>` 在浏览器中的默认行为， 使其在不同浏览器中表现一样的？ 
+现在web端的视频播放器大多都是使用的`<video>` 标签，它的默认样式在不同浏览器是不同的。那些视频网站是如何改变 `<video>` 在浏览器中的默认行为， 使其在不同浏览器中表现一样的？
 <!-- more -->
 我制作了一个自定义播放器的样板，除了拥有播放进度，暂停/播放按钮，进入全屏/退出全屏等功能之外，还有倍速播放功能。接下来我就逐一讲解如何实现它的各个功能，也扩展一些在编写中遇到的问题。（样板使用了Vue，如果对其中的代码不清楚的地方，可以查看 [Vue官方文档](https://vuejs.org/v2/guide/)）
 
@@ -32,7 +29,7 @@ tags:
 这是一段视频播放器的 html，关于播放器的特性属性是添加在 video 标签的，关于播放源的属性是添加在 source 标签的。要想播放器不带有默认样式，就在`<video>` 标签不要带上 `controls` 或者设置 `controls = false`。于是它就变成这样了:
 <img src="https://thumbnail0.baidupcs.com/thumbnail/02c367cfbu12b8d2858a4aa5abe4410f?fid=2442092063-250528-717781847137184&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-XLWEXKkks25MBWoeQ%2brC1GeJx%2fc%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;width: 576px; height:356px" alt="无样式播放器">
 
-在编写之前我们需要清楚如何获取视频的信息，如何控制视频的播放？MDN 上有关于 HTML Video element(video)的[教程](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)。 
+在编写之前我们需要清楚如何获取视频的信息，如何控制视频的播放？MDN 上有关于 HTML Video element(video)的[教程](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)。
 
 通过[HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)类，可以获取视频总时长: `duration`，获取视频当前播放进度: `currentTime`，设置播放音量: `volume`，设置播放速率: `playbackRate`。
 
@@ -92,7 +89,7 @@ mediaTimeupdate () {
     let currentTime = this.$refs.videoRef.currentTime;
     this.currentTime = currentTime;
   }
-}   
+}
 ```
 ```
 this.$refs.videoRef.currentTime = newV
@@ -100,12 +97,12 @@ this.$refs.videoRef.currentTime = newV
 
 - **设置播放速率**(`playbackRate` 为可读写属性)
 ```
-this.$refs.videoRef.playbackRate = playbackRate;   
+this.$refs.videoRef.playbackRate = playbackRate;
 ```
 
 - **设置音量**(`volume` 为可读写属性)
 ```
-this.$refs.videoRef.volume = volume;   
+this.$refs.videoRef.volume = volume;
 ```
 
 - **视频进入全屏，退出全屏**
@@ -158,11 +155,11 @@ function catchFullScreenError (promise) {
 除了上面谈到的功能，我们在实际需求开发中还有一些其他的要求，比如在视频网站需要对视频设置封面，在视频学习网站获取学员的学习时间来记录学习进度等等。
 
 - **设置视频封面**
-   
+
 这个很简单，`source`标签的`poster`属性为一张图片地址即可。
 
 - **获取视频播放时间**
-   
+
 如果你在看到这个需求的时候打算通过计时器来完成，那么在实现过程肯定是极其复杂的，而且还可能不精确。
 
 浏览器给我们提供了 video 元素的 `played` 属性，如果视频有进行播放的话，它返回一个 `TimeRanges` 对象，该对象包含播放的媒体源的范围。
@@ -201,7 +198,7 @@ function getPlayedDuration (bDetail = false) {
   如果你想视频加载完成后自动播放，需要在video标签添加autoplay属性。但是事实可能不会如你所愿，在Chrome中有个媒体的[自动播放策略](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio)，浏览器这篇文章需要科学上网，其中的策略内容如图所示：
 
   <img src="https://thumbnail0.baidupcs.com/thumbnail/9eea69f4csdfffd2b1f1399be0a30c7d?fid=2442092063-250528-254526268630587&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-6xKnFSfq54PwBp62o%2fkA0I0ZEtw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;" alt="auotoplayPolicy">
- 
+
 
   总结一下截图里面的内容：静音；媒体参与指数（MEI）分数满足；iframe 带有`allow="autoplay"`，这三种情况下，Chrome是允许媒体自动播放的。
 
