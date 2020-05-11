@@ -12,26 +12,21 @@ tags:
 起初在网页应用中下载文件，会向服务器发送一个 HTTP 请求，服务器返回文件内容。例如图片文件，我们知道在浏览页面时，如果页面中发送图片文件的请求，服务器将图片文件返回给客户端，然后图片会展示在页面中。浏览器要怎么知道是展示文件还在下载文件呢？
 
 
-##### Content-Disposition: attachment
+### Content-Disposition: attachment
 
 在常规的HTTP应答中，`Content-Disposition` 响应头指示了HTTP body的内容以什么形式展示。是以内联的形式（`Content-Disposition: inline`，即网页或者页面的一部分），还是以附件的形式（`Content-Disposition: attachment`）下载并保存到本地。Content-Disposition 头还可以带上一个 `filename` 参数，filename 的值将预填为下载后的文件名。这个方案需要后端开发人员的配合才可行。
 
 
-
-##### download
-
+### download
 HTML `<a>` 元素可以创建通向其他网页、文件或同一页面内的位置超链接，在 HTML5 中，添加了一个新的属性 —— download。即使资源的响应头不是 `Content-Disposition: attachment`， 此属性也能指示浏览器下载 URL 指向的资源而不是导航到它， 点击带有 download 属性的链接将提示用户保存为本地文件。在使用这个属性的时候，需要注意几点。
 
-1. download 属性仅适用于同源 URL。
-
+**1. download 属性仅适用于同源 URL。**
 要使 download 属性能正常下载 URL 指向的资源，URL 必须是同源的。对于不同源的资源，如果浏览器能够直接打开，例如图片，音频，视频等等，点击链接会正常跳转导航，链接的资源展示在浏览器中。特殊情况，如果是浏览器不能直接打开资源，例如PPT， zip等等，文件就会被浏览器下载。
 
-2. URL 可以是 blob: URL 和 data: URL
-
+**2. URL 可以是 blob: URL 和 data: URL**
 URL 也可以是 `blob: URL` 或者 `data: URL`， 有了这个特性，再结合 Blob API，用户就可以下载非同源资源（前提是这个资源允许跨域）和用户自己生产的数据了，这个在后面再做详细讨论。
 
-3. 资源响应头包含 Content-Disposition
-
+**3. 资源响应头包含 Content-Disposition**
 如果 HTTP 头中包含 `Content-Disposition:  attachment`，且属性赋予了一个不同于 download 属性的 `filename` ，那么 HTTP 头属性优先级更高。
 
 
@@ -53,7 +48,7 @@ URL 也可以是 `blob: URL` 或者 `data: URL`， 有了这个特性，再结�
 
 
 
-##### 利用 Canvas API 下载图片
+### 利用 Canvas API 下载图片
 
 这个方案可以下载同源和允许跨域的非同源的图片
 
@@ -88,9 +83,9 @@ function downloadImageByCanvas (imgsrc, fileName= 'default') {
 }
 ```
 
-##### 利用 Blob API 下载资源
+### 利用 Blob API 下载资源
 
-* 无请求下载
+####  1. 无请求下载
 
 Blob API 使无请求下载成为可能，比如网页应用中有一个文本输入框，用户完成内容输入之后，需要提供一个快捷的下载功能，将用户输入的内容下载下来。下面我们来实现这个简易的下载功能：
 
@@ -139,7 +134,7 @@ Blob API 使无请求下载成为可能，比如网页应用中有一个文本�
   }
 ```
 
-* 下载远程资源
+####  2. 下载远程资源
 
 如果我们想下载一些非同源的资源,  对于那些浏览器不能直接打开的资源，我们可以直接使用添加download属性的 a 标签。如果是图片，视频等等，我们可以将资源数据先请求到本地，然后再配合Web API使用和添加download属性的 a 标签来实现下载，这种方法适合所有可以成功下载到本地的资源类型，下面我们一起来看看怎么实现：
 
@@ -191,7 +186,7 @@ xhr.addEventListener('progress', function (evt) {
 
 * Content-Disposition: attachment
 * `<a>` 标签的 download 属性
-*  Canvas API 下载远程的图片
+*  Canvas API 下载图片
 *  Blob API 下载资源
 
 感谢各位看官的阅读，如果发现文中的任何问题，欢迎指正。
