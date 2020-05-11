@@ -8,31 +8,33 @@ tags:
 
 当你看到文章的标题后以为在文章里找到了可以直接使用的下载方（代）案（码），读完文章可能会使你失望，但是本文的价值完成胜于找到“插入即用”的下载方案。让你从根源上了解各种下载姿势的原理，让我们一起来探索吧！
 <!-- more -->
-
+<br><br>
 起初在网页应用中下载文件，会向服务器发送一个 HTTP 请求，服务器返回文件内容。例如图片文件，我们知道在浏览页面时，如果页面中发送图片文件的请求，服务器将图片文件返回给客户端，然后图片会展示在页面中。浏览器要怎么知道是展示文件还在下载文件呢？
-
+<br><br>
 
 ### Content-Disposition: attachment
 
 在常规的HTTP应答中，`Content-Disposition` 响应头指示了HTTP body的内容以什么形式展示。是以内联的形式（`Content-Disposition: inline`，即网页或者页面的一部分），还是以附件的形式（`Content-Disposition: attachment`）下载并保存到本地。Content-Disposition 头还可以带上一个 `filename` 参数，filename 的值将预填为下载后的文件名。这个方案需要后端开发人员的配合才可行。
-
+<br><br>
 
 ### download
 HTML `<a>` 元素可以创建通向其他网页、文件或同一页面内的位置超链接，在 HTML5 中，添加了一个新的属性 —— download。即使资源的响应头不是 `Content-Disposition: attachment`， 此属性也能指示浏览器下载 URL 指向的资源而不是导航到它， 点击带有 download 属性的链接将提示用户保存为本地文件。在使用这个属性的时候，需要注意几点。
-
+<br><br>
 **1. download 属性仅适用于同源 URL。**
+
 要使 download 属性能正常下载 URL 指向的资源，URL 必须是同源的。对于不同源的资源，如果浏览器能够直接打开，例如图片，音频，视频等等，点击链接会正常跳转导航，链接的资源展示在浏览器中。特殊情况，如果是浏览器不能直接打开资源，例如PPT， zip等等，文件就会被浏览器下载。
-
+<br><br>
 **2. URL 可以是 blob: URL 和 data: URL**
+
 URL 也可以是 `blob: URL` 或者 `data: URL`， 有了这个特性，再结合 Blob API，用户就可以下载非同源资源（前提是这个资源允许跨域）和用户自己生产的数据了，这个在后面再做详细讨论。
-
+<br><br>
 **3. 资源响应头包含 Content-Disposition**
+
 如果 HTTP 头中包含 `Content-Disposition:  attachment`，且属性赋予了一个不同于 download 属性的 `filename` ，那么 HTTP 头属性优先级更高。
-
-
+<br><br>
 
 如果这时你已经被 Content-Disposition 和 download 属性绕晕了头，到底什么时候浏览器会执行下载而不是显示。我在下面的表格中总结了 Content-Disposition ，download 以及是否跨域的不同情况下，浏览器是如何处理资源的，它可以帮助大家来捋清思路。
-
+<br><br>
 
 
 |                  | Content-Disposition:inline               | Content-Disposition: attachment                              |
@@ -41,11 +43,11 @@ URL 也可以是 `blob: URL` 或者 `data: URL`， 有了这个特性，再结�
 | 同域(无download) | 行为: 浏览器打开资源                     | 行为: 下载资源， 文件名: Content-Disposition 头的filename 属性值 |
 | 跨域(download)   | 行为: 浏览器打开资源                     | 行为: 下载资源， 文件名: Content-Disposition 头的filename 属性值 |
 | 跨域(无download) | 行为: 浏览器打开资源                     | 行为: 下载资源， 文件名: Content-Disposition 头的filename 属性值 |
-
+<br><br>
 
 
 如果对于非同源的资源，但是又想把它们下载到本地，我们要怎么处理呢？得利于HTML5 和一些新的 Web API ，我们就可以实现这个想法了。其中的大概原理就是将我们想下载的资源的二进制数据转换为 blob: URL 或者 data: URL，然后利用添加 download 属性的 HTML `<a>` 元素，将 blob: URL 或者 data: URL 赋值给 href 属性，这样资源就被可以下载了，接下来我一起来看看。
-
+<br><br>
 
 
 ### 利用 Canvas API 下载图片
@@ -82,7 +84,7 @@ function downloadImageByCanvas (imgsrc, fileName= 'default') {
   image.src = imgsrc;
 }
 ```
-
+<br><br>
 ### 利用 Blob API 下载资源
 
 ####  1. 无请求下载
@@ -133,6 +135,7 @@ Blob API 使无请求下载成为可能，比如网页应用中有一个文本�
     a = null;
   }
 ```
+<br><br>
 
 ####  2. 下载远程资源
 
@@ -154,12 +157,12 @@ function downloadByXHR (url) {
   xhr.send();
 }
 ```
-
+<br><br>
 
 
 其实不管是`利用 Canvas API 下载远程的图片`还是 `利用 Blob API 下载资源`， 最后都要使用
 到 HTML `<a>` 元素的 download 的属性。如果想要使用`利用 Blob API 下载资源` 这个下载方案，可以使用一个具有兼容性下载工具 [FileSaver.js](https://github.com/eligrey/FileSaver.js)。它暴露了一个saveAs 方法，这个方法接收一个资源url或者 blob作为第一个参数。
-
+<br><br>
 
 
 需要注意几点：
@@ -179,7 +182,7 @@ xhr.addEventListener('progress', function (evt) {
 ```
 
 4. 由于Blob的使用在浏览器中是有大小限制的，所以我们能够下载资源大小也是有限制的。在不同的浏览器中这个“大小”是不同的，详细内容可以参考[这里](https://stackoverflow.com/questions/28307789/is-there-any-limitation-on-javascript-max-blob-size)。
-
+<br><br>
 
 
 现在我们已经结束了探索之旅，一起来总结一下所有的方案吧。
@@ -190,7 +193,7 @@ xhr.addEventListener('progress', function (evt) {
 *  Blob API 下载资源
 
 感谢各位看官的阅读，如果发现文中的任何问题，欢迎指正。
-
+<br><br>
 
 
 参考链接：
