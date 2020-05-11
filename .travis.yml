@@ -1,6 +1,7 @@
 language: node_js
 
-node_js: stable
+node_js: 
+  - 13
 before_install:
 - git config user.name "450671491"
 - git config user.email "450671491@qq.com"
