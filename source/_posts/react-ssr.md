@@ -60,11 +60,11 @@ class Index extends React.Component {
 
 在浏览器中查看，页面已经展示出了内容：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018001348.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018001348.png)
 
 再在浏览器中查看源代码，发现在里面并没有组件中的内容：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018001656.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018001656.png)
 
 这就是客户端渲染，浏览器最开始拿到的只是一个 html 的框架，页面的内容是通过 js 生成，而 js 是运行在浏览器上的，所以是客户端渲染。像爬虫爬到的也就是上图所看到的内容，不管页面里面有什么内容，爬虫都是拿不到的，所以客户端渲染不利于 SEO。
 
@@ -84,11 +84,11 @@ router.get("/", (ctx, next) => {
 
 浏览器中的效果，展示的是返回的内容：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018134455.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018134455.png)
 
 在浏览器中查看源代码，可以看到浏览器拿到的就是服务端返回的内容：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018134627.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018134627.png)
 
 ### 2.2.2 返回 html
 
@@ -112,11 +112,11 @@ router.get("/", (ctx, next) => {
 
 浏览器中的效果：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018135430.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018135430.png)
 
 查看源代码：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/2_aboutWidthCode_20191018135540.png)
+![](/images/react-ssr/2_aboutWidthCode_20191018135540.png)
 
 这里就实现了一个最简单的服务端渲染，可以看到服务端渲染就是浏览器能直接拿到页面的内容。
 
@@ -265,7 +265,7 @@ class Index extends Component {
 
 使用查看源码查看服务器返回的内容（可以看到并没有绑定事件）：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/4_isomorphism_20191022235440.png)
+![](/images/react-ssr/4_isomorphism_20191022235440.png)
 
 ## 4.2 如何实现同构
 
@@ -289,7 +289,7 @@ ReactDOM.hydrate(element, container[, callback])
 
 下面是项目的结构（注意这是一个最简单的演示项目，实际项目自行完善）：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/4_isomorphism_20191028005819.png)
+![](/images/react-ssr/4_isomorphism_20191028005819.png)
 
 ```javascript
 // src/main.jsx 代码
@@ -325,7 +325,7 @@ router.get("/", (ctx, next) => {
 
 首先看本次用例的项目结构：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/5_router_20191028231319.png)
+![](/images/react-ssr/5_router_20191028231319.png)
 
 下面是一个配置路由的组件，客户端和服务端都是调用这个组件：
 
@@ -514,9 +514,9 @@ router.get("*", (ctx, next) => {
 
 ## 6.3 运行效果
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/6_redux_20191107235907.png)
+![](/images/react-ssr/6_redux_20191107235907.png)
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/6_redux_20191106113918.png)
+![](/images/react-ssr/6_redux_20191106113918.png)
 
 上面的例子中，数据获取是在客户端完成的，服务端并未获取数据。
 
@@ -633,11 +633,11 @@ export async function getUserInfo() {
 
 在浏览器中查看源代码，服务端渲染的页面中的数据是 loadData 中返回的数据，说明服务端获取数据成功了：
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/6_redux_20191110234546.png)
+![](/images/react-ssr/6_redux_20191110234546.png)
 
 查看网络请求，可以看到当前页面的请求耗时 1.51s，服务端需要等待 loadData 执行完成，拿到数据后再渲染 react 组件，饭后返回给浏览器
 
-![](https://raw.githubusercontent.com/meishaFE/blog/master/source/images/react-ssr/6_redux_20191110234855.png)
+![](/images/react-ssr/6_redux_20191110234855.png)
 
 # 7 注水和脱水
 
