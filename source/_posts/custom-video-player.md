@@ -12,10 +12,10 @@ tags:
 我制作了一个自定义播放器的样板，除了拥有播放进度，暂停/播放按钮，进入全屏/退出全屏等功能之外，还有倍速播放功能。接下来我就逐一讲解如何实现它的各个功能，也扩展一些在编写中遇到的问题。（样板使用了Vue，如果对其中的代码不清楚的地方，可以查看 [Vue官方文档](https://vuejs.org/v2/guide/)）
 
 这是`<video>`标签在浏览器中的默认样式：
-<img src="https://thumbnail0.baidupcs.com/thumbnail/e3b8bd6f5u270ad7b52c602139c5178b?fid=2442092063-250528-1006563917287602&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VJFigzIOX2oNLtj7HMV1YooWwoQ%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;width: 576px; height:356px" alt="视频播放器默认样式">
+<img src="https://lexiangla.com/assets/716fcc0a9c0111ea96000a58ac13f515" style="display: block;width: 576px; height:356px" alt="视频播放器默认样式">
 
 这是完成的样板的样式：
-<img src="https://thumbnail0.baidupcs.com/thumbnail/ba58e1012uf0597d04c156c854410cc6?fid=2442092063-250528-338895420058245&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-%2fvUr8nmiYFO1L2vNhYpVJ1w%2bcsY%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;width: 576px; height:356px" alt="视频播放器自定义样式">
+<img src="https://lexiangla.com/assets/becc0bda9c0111ea89cb0a58ac13a905" style="display: block;width: 576px; height:356px" alt="视频播放器自定义样式">
 
 现在我们一步一步来探索如何实现图二中的效果。
 
@@ -27,7 +27,7 @@ tags:
 </video>
 ```
 这是一段视频播放器的 html，关于播放器的特性属性是添加在 video 标签的，关于播放源的属性是添加在 source 标签的。要想播放器不带有默认样式，就在`<video>` 标签不要带上 `controls` 或者设置 `controls = false`。于是它就变成这样了:
-<img src="https://thumbnail0.baidupcs.com/thumbnail/02c367cfbu12b8d2858a4aa5abe4410f?fid=2442092063-250528-717781847137184&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-XLWEXKkks25MBWoeQ%2brC1GeJx%2fc%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;width: 576px; height:356px" alt="无样式播放器">
+<img src="https://lexiangla.com/assets/20f066309c0211ea9b280a58ac13cd81" style="display: block;width: 576px; height:356px" alt="无样式播放器">
 
 在编写之前我们需要清楚如何获取视频的信息，如何控制视频的播放？MDN 上有关于 HTML Video element(video)的[教程](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)。
 
@@ -164,7 +164,7 @@ function catchFullScreenError (promise) {
 
 浏览器给我们提供了 video 元素的 `played` 属性，如果视频有进行播放的话，它返回一个 `TimeRanges` 对象，该对象包含播放的媒体源的范围。
 
-<img src="https://thumbnail0.baidupcs.com/thumbnail/e7a53da98r990eb6e242804457797a79?fid=2442092063-250528-1049800516612661&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-6mi%2bu0TkCn%2fKD8ui%2bfIkPCJIcik%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display:block;width: 320px; height:160px" alt="timeRanges">
+<img src="https://lexiangla.com/assets/4b986c669c0211eaa47c0a58ac13e1df" style="display:block;width: 320px; height:160px" alt="timeRanges">
 
 ```
 this.$refs.videoRef.played;
@@ -197,7 +197,7 @@ function getPlayedDuration (bDetail = false) {
 - **视频自动播放**
   如果你想视频加载完成后自动播放，需要在video标签添加autoplay属性。但是事实可能不会如你所愿，在Chrome中有个媒体的[自动播放策略](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio)，浏览器这篇文章需要科学上网，其中的策略内容如图所示：
 
-  <img src="https://thumbnail0.baidupcs.com/thumbnail/9eea69f4csdfffd2b1f1399be0a30c7d?fid=2442092063-250528-254526268630587&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-6xKnFSfq54PwBp62o%2fkA0I0ZEtw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=1899992837627258761&dp-callid=0&time=1584885600&size=c1680_u1050&quality=90&vuk=2442092063&ft=image&autopolicy=1" style="display: block;" alt="auotoplayPolicy">
+  <img src="https://lexiangla.com/assets/0d894a7a9c0311eabb530a58ac13f255" style="display: block;" alt="auotoplayPolicy">
 
 
   总结一下截图里面的内容：静音；媒体参与指数（MEI）分数满足；iframe 带有`allow="autoplay"`，这三种情况下，Chrome是允许媒体自动播放的。
