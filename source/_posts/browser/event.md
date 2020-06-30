@@ -273,4 +273,3 @@ window.addEventListener('touchstart', function(e) {
 则页面将不能滚动，然而，当用户触发`touchstart`事件的时候，浏览器并不知道用户是否会在事件的回掉函数中阻止默认事件，所以浏览器只有执行完事件的回掉函数才知道用户是否阻止了默认事件，当事件的回掉中逻辑比较复杂的时候，滚动的性能就非常的差，尤其是在`touchmove`事件中。<br />在`chrome`下控制台会抛出错误：<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/372445/1593309756859-f92d7e9d-7507-4743-9ea1-ef91893b6c0c.png#align=left&display=inline&height=166&margin=%5Bobject%20Object%5D&name=image.png&originHeight=332&originWidth=1716&size=99409&status=done&style=none&width=858)<br />
 <br />提示我们不能在`passive`为`true`时，在事件的回掉函数中阻止默认事件，因为`chrome`为了提高移动端的滚动性能，把`passive`的第三个参数默认设置为了`true`，表示在事件的回掉函数中不会阻止默认事件。<br />
 <br />
-
